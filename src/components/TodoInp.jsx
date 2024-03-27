@@ -13,6 +13,8 @@ function TodoInput(props) {
              />
             <button className="add-btn" onClick={() => {
                 props.addList(inputText);
+                SetInputText('')
+                document.getElementsByClassName("input-box-todo")[0].value = '';
             }}>
                 <AddCircleOutlineOutlinedIcon style={{fontSize:'45px',color: '#00b4d4'}}/> </button>
 
