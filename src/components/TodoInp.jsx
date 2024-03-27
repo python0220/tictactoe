@@ -6,14 +6,26 @@ function TodoInput(props) {
     const [inputText,SetInputText] = useState('')
     return (
         <div className="input-container">
-            <input type="text" className="input-box-todo" placeholder="Enter your TodoTask"
+            <input type="text" id="input-box" className="input-box-todo" placeholder="Enter your TodoTask"
             onChange={e=>{
                 SetInputText(e.target.value)
             }}
+            onKeyDown={e=>{
+                if (e.key === 'Enter'){
+                    if (e.target.value !== ''){
+                        props.addList(inputText);
+                        SetInputText('')
+                        document.getElementsByClassName("input-box-todo")[0].value = '';
+
+                    }
+                }
+            }}
              />
             <button className="add-btn" onClick={() => {
-                props.addList(inputText);
-                SetInputText('')
+                if (document.getElementById('input-box').value !== ''){
+                    props.addList(inputText);
+                    SetInputText('')
+                }
                 document.getElementsByClassName("input-box-todo")[0].value = '';
             }}>
                 <AddCircleOutlineOutlinedIcon style={{fontSize:'45px',color: '#00b4d4'}}/> </button>
